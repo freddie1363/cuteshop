@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.notice.service.impl.NoticeMapper">
+	
+
+	<resultMap id="notice" type="egovframework.notice.service.NoticeVO">
+		<result property="id" column="id" />
+		<result property="subject" column="subject" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="regdate" column="regdate" />
+	</resultMap>
+	
+	<insert id="insertNotice">
+		<![CDATA[
+			INSERT INTO notice 
+				( subject
+				  , content
+				  , writer
+				  , regdate )
+			VALUES ( #{subject}
+				  , #{content}
+				  , #{writer}
+				  , #{regdate} )
+		]]>
+	</insert>
+	
+	<update id="updateNotice">
+		<![CDATA[
+			UPDATE notice
+			SET subject=#{subject}
+				, content=#{content}
+				, writer=#{writer}
+				, regdate=#{regdate} 
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	<delete id="deleteNotice">
+		<![CDATA[
+			DELETE FROM notice WHERE id=#{id}
+			]]>
+	</delete>
+	
+	<select id="selectNotice" resultMap="notice">
+		<![CDATA[
+			SELECT
+				id
+				, subject
+				, content
+				, writer
+				, regdate
+			FROM notice 
+			WHERE id=#{id}
+			]]>
+	</select>
+	
+	<select id="selectNoticeList" parameterType="egovframework.notice.service.NoticeVO" resultType="egovframework.notice.service.NoticeVO">
+			SELECT
+								id
+								, subject
+								, content
+								, writer
+								, regdate
+					FROM notice
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					subject LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY id desc
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectNoticeListTotCnt" parameterType="egovframework.notice.service.NoticeVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM notice
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					subject LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

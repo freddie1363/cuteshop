@@ -1,0 +1,52 @@
+@charset "UTF-8";
+@import 'reset.css';
+
+#wrapper {margin : 0 auto; width : 800px; border : 1px solid red;}
+div { border : 1px solid yellow}
+#wrapper > div { border : 1px solid blue; }
+#wrapper > #header { height : 150px; position : relative;}
+#wrapper > #header > #headermenu {
+		/* overflow : hidden;  */
+		position : absolute; 
+		right : 50px;
+		top : 20px;
+}
+
+#wrapper > #header > #headermenu > li {
+		float : left;
+		background-color: yellow;
+		padding : 10px 30px;
+		position : relative;
+		/* text-align: center; */
+}
+
+#wrapper > #header > #headermenu > li > ul { 
+		display: none;
+		margin-top : 11px;
+		position: absolute;
+		top : 30px;
+		left : 0px;
+		width : 100%;
+}
+#wrapper > #header > #headermenu > li:hover {
+	background-color: lightgreen;
+	color : red;
+}
+#wrapper > #header > #headermenu > li:hover > ul { 
+		background-color: black;
+		display : block;
+}
+
+#header > #logingroupmenu { 
+	overflow : hidden; 
+	position : absolute;
+	top : 5px;
+	right : 10px;
+}
+#header > #logingroupmenu > li { float : left; font-size : 0.7em; padding : 2px 7px;}
+#header > #logingroupmenu > li:hover {
+	color : red;
+}
+
+div#listdiv li:nth-child(2n) { background-color: lightgray; }
+div#listdiv li:hover { background-color: blue; color : white; cursor:pointer; }

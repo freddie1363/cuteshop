@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.kjhuser.service.impl.KjhuserMapper">
+	
+
+	<resultMap id="kjhuser" type="egovframework.kjhuser.service.KjhuserVO">
+		<result property="id" column="id" />
+		<result property="userid" column="userid" />
+		<result property="userpw" column="userpw" />
+		<result property="userphone" column="userphone" />
+	</resultMap>
+	
+	<insert id="userJoin">
+		<![CDATA[
+			INSERT INTO kjhuser 
+				( userid
+				  , userpw
+				  , userphone )
+			VALUES ( #{userid}
+				  , #{userpw}
+				  , #{userphone} )
+		]]>
+	</insert>
+	
+	<insert id="insertKjhuser">
+		<![CDATA[
+			INSERT INTO kjhuser 
+				( userid
+				  , userpw
+				  , userphone )
+			VALUES ( #{userid}
+				  , #{userpw}
+				  , #{userphone} )
+		]]>
+	</insert>
+	
+	<update id="updateKjhuser">
+		<![CDATA[
+			UPDATE kjhuser
+			SET userpw=#{userpw}
+				, userphone=#{userphone}
+				WHERE userid=#{userid}
+			]]>
+	</update>
+	
+	<delete id="deleteKjhuser">
+		<![CDATA[
+			DELETE FROM kjhuser WHERE id=#{id}
+			]]>
+	</delete>
+	
+	<select id="checkUserLogin" resultMap="kjhuser">
+		<![CDATA[
+			SELECT
+				id
+				, userid
+				, userpw
+				, userphone
+			FROM kjhuser WHERE userid=#{userid} and userpw=#{userpw}
+			]]>
+	</select>
+	
+	<select id="selectKjhuser" resultMap="kjhuser">
+		<![CDATA[
+			SELECT
+				id
+				, userid
+				, userpw
+				, userphone
+			FROM kjhuser WHERE userid=#{userid}
+			]]>
+	</select>
+	
+	<select id="findId" resultMap="kjhuser">
+		<![CDATA[
+			SELECT
+				id
+				, userid
+				, userpw
+				, userphone
+			FROM kjhuser WHERE userphone=#{userphone}
+			]]>
+	</select>
+	
+	<select id="findPw" resultMap="kjhuser">
+		<![CDATA[
+			SELECT
+				id
+				, userid
+				, userpw
+				, userphone
+			FROM kjhuser WHERE userphone=#{userphone} AND userid=#{userid}
+			]]>
+	</select>
+	
+	<select id="selectKjhuserList" parameterType="egovframework.kjhuser.service.KjhuserVO" resultType="egovMap">
+			SELECT
+								id
+								, userid
+								, userpw
+								, userphone
+					FROM kjhuser
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					userid LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY id
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectKjhuserListTotCnt" parameterType="egovframework.kjhuser.service.KjhuserVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM kjhuser
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					userid LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

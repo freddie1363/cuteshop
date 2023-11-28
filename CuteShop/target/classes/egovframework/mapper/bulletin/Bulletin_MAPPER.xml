@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.bulletin.service.impl.BulletinMapper">
+	
+
+	<resultMap id="bulletin" type="egovframework.bulletin.service.BulletinVO">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="appendix" column="appendix" />
+		<result property="writer" column="writer" />
+		<result property="regdate" column="regdate" />
+		<result property="moddate" column="moddate" />
+		<result property="status" column="status" />
+	</resultMap>
+	
+	<insert id="insertBulletin">
+		<![CDATA[
+			INSERT INTO bulletin 
+				( id
+				  , title
+				  , content
+				  , appendix
+				  , writer
+				  , regdate
+				  , moddate
+				  , status )
+			VALUES ( #{id}
+				  , #{title}
+				  , #{content}
+				  , #{appendix}
+				  , #{writer}
+				  , #{regdate}
+				  , #{moddate}
+				  , #{status} )
+		]]>
+	</insert>
+	
+	<update id="updateBulletin">
+		<![CDATA[
+			UPDATE bulletin
+			SET title=#{title}
+				, content=#{content}
+				, appendix=#{appendix}
+				, writer=#{writer}
+				, regdate=#{regdate}
+				, moddate=#{moddate}
+				, status=#{status}
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	<delete id="deleteBulletin">
+		<![CDATA[
+			DELETE FROM bulletin WHERE id=#{id}
+			]]>
+	</delete>
+	
+	<select id="selectBulletin" resultMap="bulletin">
+		<![CDATA[
+			SELECT
+				id
+				, title
+				, content
+				, appendix
+				, writer
+				, regdate
+				, moddate
+				, status
+			FROM bulletin 
+			WHERE id=#{id}
+			]]>
+	</select>
+	
+	<select id="selectBulletinList" parameterType="egovframework.bulletin.service.BulletinVO" resultType="egovMap">
+			SELECT
+								id
+								, title
+								, content
+								, appendix
+								, writer
+								, regdate
+								, moddate
+								, status
+					FROM bulletin
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					title LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY id desc
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectBulletinListTotCnt" parameterType="egovframework.bulletin.service.BulletinVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM bulletin
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					title LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

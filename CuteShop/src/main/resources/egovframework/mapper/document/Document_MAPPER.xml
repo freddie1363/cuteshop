@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.document.service.impl.DocumentMapper">
+	
+
+	<resultMap id="document" type="egovframework.document.service.DocumentVO">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="regdate" column="regdate" />
+		<result property="moddate" column="moddate" />
+	</resultMap>
+	
+	<insert id="insertDocument">
+		<![CDATA[
+			INSERT INTO document 
+				( title
+				  , content
+				  , writer
+				  , regdate
+				  , moddate )
+			VALUES ( #{title}
+				  , #{content}
+				  , #{writer}
+				  , #{regdate}
+				  , #{moddate} )
+		]]>
+	</insert>
+	
+	<update id="updateDocument">
+		<![CDATA[
+			UPDATE document
+			SET id=#{id}
+				, title=#{title}
+				, content=#{content}
+				, writer=#{writer}
+				, regdate=#{regdate}
+				, moddate=#{moddate}
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	<delete id="deleteDocument">
+		<![CDATA[
+			DELETE FROM document WHERE id=#{id}
+			]]>
+	</delete>
+	
+	<select id="selectDocument" resultMap="document">
+		<![CDATA[
+			SELECT
+				id
+				, title
+				, content
+				, writer
+				, regdate
+				, moddate
+			FROM document WHERE id=#{id}
+			]]>
+	</select>
+	
+	<select id="selectDocumentList" parameterType="egovframework.document.service.DocumentVO" resultType="egovframework.document.service.DocumentVO">
+			SELECT
+								id
+								, title
+								, content
+								, writer
+								, regdate
+								, moddate
+					FROM document
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					title LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY id desc
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectDocumentListTotCnt" parameterType="egovframework.document.service.DocumentVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM document
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					title LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>

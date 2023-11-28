@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.kjhgallery.service.impl.KjhgalleryMapper">
+	
+
+	<resultMap id="kjhgallery" type="egovframework.kjhgallery.service.KjhgalleryVO">
+		<result property="id" column="id" />
+		<result property="subject" column="subject" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="regdate" column="regdate" />
+		<result property="appendix" column="appendix" />
+		<result property="likes" column="likes" />
+		<result property="views" column="views" />
+	</resultMap>
+	
+	<insert id="insertKjhgallery">
+		<![CDATA[
+			INSERT INTO kjhgallery 
+				( subject
+				  , content
+				  , writer
+				  , regdate
+				  , appendix )
+			VALUES ( #{subject}
+				  , #{content}
+				  , #{writer}
+				  , #{regdate}
+				  , #{appendix} )
+		]]>
+	</insert>
+	
+	<update id="updateKjhgallery">
+		<![CDATA[
+			UPDATE kjhgallery
+			SET subject=#{subject}
+				, content=#{content}
+				, writer=#{writer}
+				, regdate=#{regdate}
+				, appendix=#{appendix}
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	<update id="updateViews">
+		<![CDATA[
+			UPDATE kjhgallery
+			SET views=views+1				
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	
+	
+	<update id="increaseBoardLikes">
+		<![CDATA[
+			UPDATE kjhgallery
+			SET likes = likes+1
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	<update id="decreaseBoardLikes">
+		<![CDATA[
+			UPDATE kjhgallery
+			SET likes = likes-1
+				WHERE id=#{id}
+			]]>
+	</update>
+	
+	
+	
+	<delete id="deleteKjhgallery">
+		<![CDATA[
+			DELETE FROM kjhgallery WHERE id=#{id}
+			]]>
+	</delete>
+	
+	<select id="selectKjhgallery" resultMap="kjhgallery">
+		<![CDATA[
+			SELECT
+				id
+				, subject
+				, content
+				, writer
+				, regdate
+				, appendix
+				, likes
+				, views
+			FROM kjhgallery WHERE id=#{id}
+			]]>
+	</select>
+	
+	<select id="selectKjhgalleryList" parameterType="egovframework.kjhgallery.service.KjhgalleryVO" resultType="egovframework.kjhgallery.service.KjhgalleryVO">
+			SELECT
+								id
+								, subject
+								, content
+								, writer
+								, regdate
+								, appendix
+								, likes
+								, views
+					FROM kjhgallery
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					subject LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY id desc
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectKjhgalleryListTotCnt" parameterType="egovframework.kjhgallery.service.KjhgalleryVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM kjhgallery
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					id = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					subject LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+	
+	<select id="selectSearchList" parameterType="egovframework.kjhgallery.service.KjhgalleryVO" resultType="egovframework.kjhgallery.service.KjhgalleryVO">
+			SELECT
+								id
+								, subject
+								, content
+								, writer
+								, regdate
+								, appendix
+					FROM kjhgallery
+			WHERE 1=1
+				AND subject LIKE CONCAT('%',#{searchKeyword},'%')
+				ORDER BY id desc
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>
+
+</mapper>

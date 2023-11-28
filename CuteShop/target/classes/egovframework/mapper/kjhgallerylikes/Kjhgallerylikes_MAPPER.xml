@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.kjhgallerylikes.service.impl.KjhgallerylikesMapper">
+	
+
+	<resultMap id="kjhgallerylikes" type="egovframework.kjhgallerylikes.service.KjhgallerylikesVO">
+		<result property="lno" column="lno" />
+		<result property="userid" column="userid" />
+		<result property="gno" column="gno" />
+	</resultMap>
+	
+	<insert id="insertKjhgallerylikes">
+		<![CDATA[
+			INSERT INTO kjhgallerylikes 
+				( userid
+				  , gno )
+			VALUES ( #{userid}
+				  , #{gno} )
+		]]>
+	</insert>
+	
+	<update id="updateKjhgallerylikes">
+		<![CDATA[
+			UPDATE kjhgallerylikes
+			SET lno=#{lno}
+				, userid=#{userid}
+				, gno=#{gno}
+			]]>
+	</update>
+	
+	<delete id="deleteKjhgallerylikes">
+		<![CDATA[
+			DELETE FROM kjhgallerylikes WHERE userid=#{userid} AND gno=#{gno}
+			]]>
+	</delete>
+	
+	<select id="selectKjhgallerylikes" resultMap="kjhgallerylikes">
+		<![CDATA[
+			SELECT
+				lno
+				, userid
+				, gno
+			FROM kjhgallerylikes
+			WHERE userid=#{userid} AND gno=#{gno}
+			]]>
+	</select>
+	
+	<select id="selectKjhgallerylikesList" parameterType="egovframework.kjhgallerylikes.service.KjhgallerylikesVO" resultType="egovMap">
+			SELECT
+								lno
+								, userid
+								, gno
+					FROM kjhgallerylikes
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					lno = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					userid LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+				ORDER BY 
+				limit #{recordCountPerPage} offset #{firstIndex}	
+	</select>	
+	<select id="selectKjhgallerylikesListTotCnt" parameterType="egovframework.kjhgallerylikes.service.KjhgallerylikesVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM kjhgallerylikes
+			WHERE userid=#{userid} AND gno=#{gno}
+					
+	</select>
+
+</mapper>

@@ -1,0 +1,905 @@
+/* GC-2A 2101060 김정현 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+li {
+  float: left;
+  list-style: none;
+}
+a {
+  color: black;
+}
+button:hover {
+  cursor: pointer;
+}
+#header {
+  height: 35px;
+  background-color: #00468C;
+}
+#nav {
+  height: 35px;
+  max-width: 1450px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  background-color: #00468C;
+}
+#topnav {
+  position: absolute;
+  right: 3px;
+  bottom: 7px;
+}
+#topnav > a {
+  padding-right: 10px;
+  font-size: 15px;
+  color: white;
+  font-size: 0.8em;
+}
+#topnav > a:hover {
+  color: #3176f9;
+  margin: 0px 5px;
+}
+#logowrap {
+  width: 1450px;
+  position: relative;
+  margin: 0 auto;
+  height: 80px;
+  z-index: 2;
+}
+#logowrap h1 {
+  width: 200px;
+  padding: 20px 0;
+  vertical-align: middle;
+}
+#topnav2 {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: calc(100% - 550px);
+}
+li.topnav2 {
+  width: 19.6%;
+  height: 80px;
+}
+.topnav2 > a {
+  color: black;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 27px 0;
+  padding-left: 50px;
+}
+.topmenu {
+  border: 2px solid #212020;
+  width: 150px;
+  margin: 0 auto;
+  display: none;
+  background-color: white;
+  position: relative;
+  bottom: 12px;
+}
+.topnav2:hover > a {
+  font-size: 1.3em;
+  color: #3176f9;
+}
+.topnav2:hover > .topmenu {
+  display: block;
+}
+.topmenu li {
+  float: none;
+}
+.topmenu li:hover {
+  background-color: #3176f9;
+  color: white;
+}
+.topmenu li:hover > a {
+  color: white;
+  font-weight: bold;
+}
+.topmenu li a {
+  display: inline-block;
+  color: black;
+  padding: 8px 0;
+  padding-left: 35px;
+}
+#mainwrap {
+      height: 1250px;
+  background-color: #ffffff;
+}
+.main {
+  width: 1450px;
+  margin: 0 auto;
+}
+.banner {
+  width: 1450px;
+  overflow: hidden;
+  position: relative;
+}
+.slider {
+  width: 5800px;
+  transform: translateX(-1450px);
+  /* position: relative;
+  left: -1450px; */
+}
+.banner img {
+  width: 1450px;
+}
+
+.banner > #indextext1 {
+  z-index: 1;
+  color: white;
+  font-size:4em;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  position: absolute;
+  left: 29%;
+  top: 17%;
+  opacity: 0;
+}
+
+.banner > #indextext2 {
+  z-index: 1;
+  color: white;
+  font-size:2.5em;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  position: absolute;
+  left: 29.5%;
+  top: 34%;
+  opacity: 0;
+}
+
+.banner > #indextext3 {
+  z-index: 1;
+  color: white;
+  font-size:2.5em;
+  position: absolute;
+  font-weight: bold;
+  font-family : 궁서;
+  left: 29.5%;
+  top: 51%;
+  opacity: 0;
+}
+
+.banner > #severaltext1{
+  z-index: 1;
+  color: white;
+  font-size:2.5em;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  position: absolute;
+  left: 34%;
+  top: 20%;
+  opacity: 0;
+
+}
+
+.banner > #severaltext2{
+  z-index: 1;
+  color: white;
+  font-size:2.5em;
+  font-weight: bold;
+  font-family: Comic Sans MS;
+  position: absolute;
+  left: 34%;
+  top: 35%;
+  opacity: 0;
+
+}
+
+.slider li {
+  float: left;
+}
+.btnwrap {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  margin-left: -41px;
+}
+input.indexbtn[type="radio"] {
+  background-color: #ffff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 16px;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: 1px solid darkcyan;
+}
+input.indexbtn[type="radio"]:checked {
+  background-color: #3176f9;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 16px;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+}
+
+.section {
+  margin: 0 auto;
+  margin-top: 80px;
+  height: 320px;
+}
+.bottomsection {
+  margin: 0 auto;
+  margin-top: 80px;
+  height: 320px;
+  border: 0px solid silver;
+}
+.bottomsection > ul.section1 {
+  border: 0px solid red;
+  height: 100%;
+}
+.icon {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background-color: #77a7b9;
+  font-size: 80px;
+  margin: 0 auto;
+  line-height: 120px;
+  border-radius: 50%;
+}
+h3 {
+  color: black;
+}
+.section1 {
+  overflow: hidden;
+}
+.section1 > li {
+  width: 33.3%;
+}
+
+.section1 > li#bottomlist1 {
+  width: 66.6%;
+  padding: 15px;
+  border: 0px solid blue;
+  height: 95%;
+  overflow: hidden;
+}
+.section1 > li#bottomlist2 {
+  width: 33.3%;
+  padding: 15px;
+  border: 0px solid red;
+  height: 95%;
+}
+li#bottomlist1 > img {
+  width: 24.5%;
+  height: 110%;
+  cursor: pointer;
+}
+li#bottomlist2 > form {
+  height: 100%;
+}
+.article1 {
+  padding-right: 10px;
+}
+.boardwrap {
+  border: 1px solid #212020;
+  height: 320px;
+  padding: 30px;
+}
+.boardwrap > div {
+  position: relative;
+  margin-bottom: 35px;
+}
+.boardwrap > div > span {
+  font-weight: bold;
+  font-style: italic;
+  font-size: large;
+}
+.boardwrap > div > a {
+  position: absolute;
+  right: 0;
+  color: black;
+}
+
+.boardwrap > ul > li {
+  float: none;
+  margin: 10px;
+  padding-bottom: 5px;
+  color: black;
+  list-style: initial;
+}
+.boardwrap > ul > li > a {
+  color: black;
+  display: block;
+  position: relative;
+}
+.boardwrap > ul > li > a > dl > dt {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 280px;
+  border-bottom: 1px solid lightgray;
+}
+.boardwrap > ul > li > a > dl > dd {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.paging a {
+   color: black;
+}
+.paging > li{
+    background: -webkit-linear-gradient(top, #fff 0, #ececec 100%);
+    border: 1px solid #ccc;
+    margin-left: 5px;   
+    color:black;
+}
+.paging > li > a, strong {
+   display: inline-block;
+   padding: 5px 10px;
+}
+.paging > li:first-child {
+   margin-left: 0;
+}
+.paging > li:has(strong) {
+      background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #f1fbff), color-stop(100%, #c4e4ee) );
+}
+
+.footer {
+  background-color: #EEEEEE;
+}
+.footer_width {
+  width: 1450px;
+  margin: 0 auto;
+  position: relative;
+}
+.footerlogo {
+  width: 300px;
+  padding: 50px 0;
+}
+.footer_content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1100px;
+  padding: 20px 0;
+  color: #999999;
+}
+.foot_nav li:nth-child(2n) {
+  margin: 0 7px;
+  padding: 0 7px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.foot_nav a {
+  color: #999999;
+}
+
+#centercontentdiv {
+  height: 1000px;
+  border: 0px solid blue;
+}
+#centercontentdiv > div {
+  float: left;
+}
+#centercontentdiv > div:first-child {
+  width: 150px;
+}
+#centercontentdiv > div#centercontent {
+  width: calc(100% - 150px);
+}
+
+#centerleftmenu > ul {
+  text-align: center;
+}
+#centerleftmenu > ul > li {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5px;
+  color: white;
+  background-color: #212020;
+  line-height: 40px;
+}
+#centerleftmenu > ul > li > a {
+  color: white;
+}
+#centerleftmenu > ul > li:hover {
+  background-color: #3176f9;
+}
+
+#centercontent {
+  border: 0px solid red;
+  height: 100%;
+  line-height: 50px;
+}
+#centercontent span {
+  display: inline-block;
+  text-align: center;
+  height: 25px;
+  line-height: 200%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+#centercontent > ul {
+  height: 100%;
+}
+#centercontent > ul > li {
+  height: 5%;
+  border-bottom: 1px solid lightgray;
+}
+#centercontent li:nth-child(2n + 1) {
+  background-color: white;
+}
+#centercontent li:nth-child(19) {
+  background-color: #ffffff;
+  border: 0px solid white;
+}
+#centercontent li:nth-child(19):hover {
+  background-color: white;
+}
+
+#centercontent li:nth-child(20) {
+  background-color: #ffffff;
+  border: 0px solid white;
+}
+#centercontent li:nth-child(20):hover {
+  background-color: white;
+}
+#centercontent li:hover {
+  background-color: lemonchiffon;
+}
+#centercontent #noticefirstcontent {
+  font-weight: bold;
+  background-color: #b9eeff;
+}
+#centercontent #qnafirstcontent {
+  font-weight: bold;
+  background-color: #ffaaaa;
+}
+#centercontent .signupdoublecheck:hover {
+  font-weight: bold;
+}
+#centercontent .no {
+  width: 150px;
+}
+#centercontent .subject {
+  width: 600px;
+}
+#centercontent .writer {
+  width: 220px;
+}
+#centercontent .writedate {
+  width: 150px;
+}
+#centercontent .count {
+  width: 150px;
+}
+#gallerycontent {
+  border: 0px solid red;
+  width: 1280px;
+  height: 990px;
+}
+#gallerycontent > div.gallerycontentunderdiv {
+  height: 33px;
+}
+#galleryuldiv {
+  height: 33%;
+  border: 0px solid red;
+}
+#galleryul {
+  width: 99.9%;
+  height: 99%;
+  border: 0px solid gray;
+  text-align: center;
+  padding: 25px;
+}
+#galleryul > li {
+  width: 24.9%;
+}
+#galleryul > li > dl > dt {
+  font-weight: bold;
+}
+#galleryul > li > dl > dd {
+  color: gray;
+  font-size: 0.8em;
+}
+#gallerybtndiv {
+  height: 53px;
+  border: 0px solid yellow;
+  text-align: right;
+}
+#gallerybtndiv > button {
+  height: 99%;
+  width: 100px;
+  background-color: white;
+  border: 1px solid gray;
+  font-weight: bold;
+}
+#galleryhiddendiv {
+  width: 99.9%;
+  height: 3%;
+  margin: 5px 0px;
+  text-align: right;
+  display : none;
+}
+#galleryhiddendiv > label {
+  width: 5%;
+  height: 99.9%;
+  cursor: pointer;
+}
+
+
+
+
+.signininput {
+  height: 40px;
+  width: 20%;
+}
+.signinunder {
+  font-size: 0.8em;
+  height: 30px;
+}
+.signinunder > a {
+  font-weight: bold;
+}
+#severalhtmldiv {
+  height: 1000px;
+  border: 0px solid blue;
+  margin: 0 auto;
+}
+#severalhtmldivcontent {
+  width: 99.9%;
+  height: 99%;
+  border: 0px solid purple;
+  margin: 0 auto;
+  border: 0px solid red;
+}
+#severalhtmltitle {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 10px 20px;
+  border: 0px solid black;
+}
+#severalhtmltitle > span {
+  font-weight: normal;
+  font-size: 0.6em;
+}
+#severalhtmldivcontent > div.severalhtmluldiv {
+  margin: 10px 20px;
+  padding: 10px;
+  width: 98%;
+  height: 26%;
+  border: 0px solid skyblue;
+}
+#severalhtmldivcontent > div.severalhtmluldiv > ul {
+  width: 99.5%;
+  border: 0px solid green;
+  height: 98%;
+}
+#severalhtmldivcontent > div.severalhtmluldiv > ul > li {
+  width: 49%;
+  height: 97%;
+  margin: 5px 0px 0px 5px;
+  border: 0px solid pink;
+}
+
+#severalhtmldivcontent > div.producthtmluldiv {
+  margin: 10px 20px;
+  padding: 10px;
+  width: 98%;
+  height: 25%;
+  border: 0px solid skyblue;
+}
+#severalhtmldivcontent > div.producthtmluldiv > ul {
+  width: 99.5%;
+  border: 0px solid green;
+  height: 98%;
+}
+#severalhtmldivcontent
+  > div.producthtmluldiv
+  > ul
+  > li.producthtmlli:nth-child(1) {
+  width: 29%;
+  height: 97%;
+  margin: 5px 0px 0px 7px;
+  border: 0px solid pink;
+}
+#severalhtmldivcontent
+  > div.producthtmluldiv
+  > ul
+  > li.producthtmlli:nth-child(2) {
+  width: 69%;
+  height: 97%;
+  margin: 5px 0px 0px 7px;
+  border: 0px solid pink;
+}
+#severalhtmldivcontent
+  > div.producthtmluldiv
+  > ul
+  > li.producthtmlliexception:nth-child(1) {
+  width: 69%;
+  height: 97%;
+  margin: 5px 0px 0px 7px;
+  border: 0px solid pink;
+}
+#severalhtmldivcontent
+  > div.producthtmluldiv
+  > ul
+  > li.producthtmlliexception:nth-child(2) {
+  width: 29%;
+  height: 97%;
+  margin: 5px 0px 0px 7px;
+  border: 0px solid pink;
+}
+
+#severalhtmldivcontent > div.historyhtmldiv {
+  margin: 10px 20px;
+  padding: 10px;
+  width: 97%;
+  height: 25%;
+  border: 1px solid skyblue;
+  border: 0px solid black;
+}
+#severalhtmldivcontent > div.historyhtmldiv > div.historyclickbox {
+  width: 99%.5;
+  height: 99%;
+  border: 0px solid lightgray;
+}
+#severalhtmldivcontent > div.historyhtmldiv > div.historyclickbox > ul {
+  width: 99%.5;
+  height: 99%;
+}
+#severalhtmldivcontent > div.historyhtmldiv > div.historyclickbox > ul > li {
+  float: left;
+  height: 99%;
+  margin: 2px 6px;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li:nth-child(1) {
+  width: 60%;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li:nth-child(2) {
+  width: 37%;
+}
+
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li#historybox1 {
+  border: 1px solid lightgray;
+}
+
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li
+  > p {
+  height: 15.5%;
+  padding: 2px 7px;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li
+  > p:nth-child(1) {
+  background-color: lightgray;
+  height: 24.9%;
+  font-size: 1.8em;
+  line-height: 50px;
+  display: block;
+  cursor: pointer;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li
+  > p:nth-child(1)
+  > i {
+  float: right;
+  line-height: 50px;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li#historybox2
+  > p {
+  display: none;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li#historybox2
+  > p:nth-child(1) {
+  display: block;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li#historybox3
+  > p {
+  display: none;
+}
+#severalhtmldivcontent
+  > div.historyhtmldiv
+  > div.historyclickbox
+  > ul
+  > li#historybox3
+  > p:nth-child(1) {
+  display: block;
+}
+#severalhtmldivcontent > div#googlemapdiv {
+  margin: 20px;
+  width: 97%;
+  height: 45%;
+  border: 0px solid red;
+}
+#severalhtmldivcontent > div#mapcontentdiv {
+  margin: 5px 20px;
+  padding: 2px;
+  width: 97%;
+  height: 20%;
+  border: 0px solid red;
+}
+#severalhtmldivcontent > div#mapcontentdiv > p {
+  margin-top: 2px;
+  font-size: 1.2em;
+}
+#severalhtmldivcontent .estimateformtitle {
+  margin: 5px 0px 10px 20px;
+  font-weight: bold;
+}
+#severalhtmldivcontent > form {
+  width: 99.9%;
+  height: 86%;
+  border: 0px solid red;
+}
+#severalhtmldivcontent > form > table#estimateformtable {
+  margin: 5px 20px;
+  width: 75%;
+  height: 49%;
+  border: 0px solid lightgray;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr {
+  height: 14.9%;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr:nth-child(4) {
+  height: 54.9%;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr > td {
+  border: 1px solid lightgray;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr > td > input {
+  height: 70%;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr > td:nth-child(1) {
+  width: 28.9%;
+  text-align: center;
+  background-color: #212020;
+}
+#severalhtmldivcontent > form > table#estimateformtable tr > td:nth-child(2) {
+  width: 70.9%;
+  padding: 10px;
+  color: black;
+}
+div#estimateformprivacy {
+  width: 99.9%;
+  height: 47%;
+  border: 0px solid red;
+}
+div#estimateformprivacy > div {
+  margin: 10px 20px;
+  border: 0px solid pink;
+}
+div#estimateformprivacy > div:nth-child(1) {
+  height: 7%;
+}
+div#estimateformprivacy > div:nth-child(2) {
+  height: 45%;
+}
+div#estimateformprivacy > div:nth-child(3) {
+  height: 7%;
+  font-size: 0.8em;
+}
+div#estimateformprivacy > div:nth-child(4) {
+  height: 20%;
+  line-height: 80px;
+  position: relative;
+}
+div#estimateformprivacy > div:nth-child(4) > button {
+  width: 5%;
+  height: 70%;
+  background-color: #212020;
+  color: white;
+  position: absolute;
+  left: 35%;
+  bottom: 10%;
+}
+div#estimateformprivacy > div > textarea {
+  padding: 10px 20px;
+}
+
+div#gallerypostdiv {
+  border: 0px solid red;
+  padding-left: 10px;
+  width: 99.9%;
+  height: 80%;
+}
+
+div#gallerypostdiv > div#posttitle {
+  font-weight: bold;
+  font-size: 1.2em;
+  height: 5%;
+}
+
+div#gallerypostdiv > div#postdate {
+  font-size: 0.9em;
+  height: 5%;
+}
+
+div#gallerypostdiv > div.posthrdiv {
+  height: 1%;
+}
+
+div#gallerypostdiv > div#postcontent {
+  font-size: 0.9em;
+  width: 99.9%;
+  height: 75%;
+  border: 0px solid blue;
+}
+
+div#gallerypostdiv > div#postcontent > img {
+  width: 100%;
+  height: 50%;
+}
+
+div#gallerypostdiv > div#postcontent > p {
+  height: 50%;
+  padding: 2px;
+}
+
+div#gallerypostdiv > div#postcontentbtn{
+  text-align: center;
+  margin-bottom : 10px;
+  height: 5%;
+}
+
+div#gallerypostdiv > div#postcontentbtn > button{
+  margin-left: 3px;
+  height: 99.9%;
+  width: 3%;
+}
+
+div#gallerypostdiv > div#postcontentbtn > button i{
+  font-size: 2.5em;
+}
+
+div#postunderbtn {
+  margin-top: 20px;
+  text-align: center;
+  border: 0px solid red;
+  height : 6%;
+}
+
+div#postunderbtn > button {
+  height: 100%;
+  width: 5%;
+}

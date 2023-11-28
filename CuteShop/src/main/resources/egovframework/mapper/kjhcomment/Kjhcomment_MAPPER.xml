@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.kjhcomment.service.impl.KjhcommentMapper">
+	
+
+	<resultMap id="kjhcomment" type="egovframework.kjhcomment.service.KjhcommentVO">
+		<result property="cno" column="cno" />
+		<result property="content" column="content" />
+		<result property="writer" column="writer" />
+		<result property="regdate" column="regdate" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+	<insert id="insertKjhcomment">
+		<![CDATA[
+			INSERT INTO kjhcomment 
+				( content
+				  , writer
+				  , regdate
+				  , id )
+			VALUES ( #{content}
+				  , #{writer}
+				  , SYSDATE()
+				  , #{id} )
+				  
+		]]>
+	</insert>
+	
+	<update id="updateKjhcomment">
+		<![CDATA[
+			UPDATE kjhcomment
+			SET content=#{content}
+				, writer=#{writer}
+				, regdate=#{regdate}
+				WHERE cno=#{cno}
+			]]>
+	</update>
+	
+	<delete id="deleteKjhcomment">
+		<![CDATA[
+			DELETE FROM kjhcomment where cno=#{cno}
+			]]>
+	</delete>
+	
+	<select id="selectKjhcomment" resultMap="kjhcomment">
+		<![CDATA[
+			SELECT
+				cno
+				, content
+				, writer
+				, regdate
+				, id
+			FROM kjhcomment
+			]]>
+	</select>
+	
+	<select id="selectKjhcommentList" parameterType="egovframework.kjhgallery.service.KjhgalleryVO" resultType="egovframework.kjhcomment.service.KjhcommentVO">
+			SELECT
+								cno
+								, content
+								, writer
+								, regdate
+								, id
+					FROM kjhcomment
+			WHERE id=#{id}			
+				ORDER BY cno
+	</select>	
+	<select id="selectKjhcommentListTotCnt" parameterType="egovframework.kjhcomment.service.KjhcommentVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM kjhcomment
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					cno = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					content LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>			
+	</select>
+
+</mapper>
